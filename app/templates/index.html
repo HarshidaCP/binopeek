@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BinoPeek</title>
+    <style>
+        /* 🌈 Overall page style */
+        body {
+            background-color: #b4c4f6;  /* Your main background color 💜 */
+            font-family: "Poppins", sans-serif;
+            color: #fff; /* white text for contrast */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        /* 🔠 Title */
+        h1 {
+            margin-top: 50px;
+            font-size: 2.5rem;
+
+            letter-spacing: 1px;
+        }
+
+        /* 📦 Result or message container */
+        .results {
+            background-color: #cfe3ff;   /* White box */
+            color: #333;                 /* Dark text inside */
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 60%;
+            margin: 40px auto;
+            padding: 25px;
+        }
+
+        /* 📱 WhatsApp button */
+        .whatsapp-link {
+            display: inline-block;
+            background-color: #25D366; /* WhatsApp green */
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: 0.3s ease;
+        }
+
+        .whatsapp-link:hover {
+            background-color: #1ebe5d;
+            transform: scale(1.05);
+        }
+    </style>
+    <!--<link rel="stylesheet" href="/static/style.css">-->
+</head>
+<div class="logo-container">
+    <a href="https://bino.bot/" target="_blank">
+        <img src="{{ url_for('static', path='bino.png') }}" class="logo" alt="Bino Logo 1"
+         alt="Bino Logo 1"
+             style="width:50px; height:auto; cursor:pointer; position:absolute; top:50px; left:20px;">
+    </a>
+<body>
+<div class="container">
+    <h1 style="color: #1c0e88;"> 🌏 BinoPeek</h1>
+    <h2 style="color: #1c0e88;">Hello guys </h2>
+    <p style="color: #1c0e88;">I am Binopeek . Do you want some suggestions ?</p>
+    <p style="color: #1c0e88;"> You can ask me anything . If you don't find it acceptable , Then you can directly ask my big bro BINO 🥰</p>
+
+    <form action="/ask" method="post">
+        <input type="text" name="query" placeholder="e.g., Affordable car washing near me" style="width:30%; padding:12px 16px; border-radius:10px;background-color: #cfe3ff" required>
+        <button type="submit" style="padding:12px 20px; background-color:#25D366; color:white; border:none; border-radius:10px;">Ask BinoPeek</button>
+    </form>
+
+    {% if query %}
+        <div class="results">
+            <h2>Results for "{{ query }}"</h2>
+
+            {% if suggestions %}
+                <ul>
+                    {% for s in suggestions %}
+                        <li>
+                            <strong>{{ s.name }}</strong> — {{ s.location }} <br>
+                            💸 {{ s.price }} | ⭐ {{ s.rating }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+               <p>😔 I am sorry. I don’t have any information about "<strong>{{ query }}</strong>" right now.</p>
+            <p>But you can consult with my big bro</p>
+  <p>
+            {% endif %}
+
+
+<a href="{{ bino_link }}" target="_blank"
+   style="display:inline-flex; align-items:center; gap:5px;
+          padding:6px 12px; font-size:0.9rem; background-color:#25D366;
+          color:white; border-radius:20px; text-decoration:none; cursor:pointer;"
+   onmouseover="this.style.transform='scale(1.05)';"
+   onmouseout="this.style.transform='scale(1)';">
+    <img src="{{ url_for('static', path='bino1.png') }}"
+         alt="Bino Logo" style="width:20px; height:auto;">
+    Ask Bino on WhatsApp
+</a>
+
+
+        </div>
+    {% endif %}
+</div>
+</body>
+</html>

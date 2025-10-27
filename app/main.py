@@ -15,13 +15,13 @@ templates = Jinja2Templates(directory="app/templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    """Render the homepage."""
+   
     return templates.TemplateResponse("index.html", {"request": request})
 
 
 @app.post("/ask", response_class=HTMLResponse)
 async def ask(request: Request, query: str = Form(...)):
-    """Handle user question and return suggestions."""
+    
     suggestions = get_suggestions(query)
     bino_link = generate_whatsapp_link(query)
     return templates.TemplateResponse(
@@ -33,3 +33,4 @@ async def ask(request: Request, query: str = Form(...)):
             "bino_link": bino_link,
         },
     )
+
